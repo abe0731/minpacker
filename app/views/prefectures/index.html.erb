@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prefectures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name1</th>
+      <th>Name2</th>
+      <th>Name3</th>
+      <th>Map</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prefectures.each do |prefecture| %>
+      <tr>
+        <td><%= prefecture.name1 %></td>
+        <td><%= prefecture.name2 %></td>
+        <td><%= prefecture.name3 %></td>
+        <td><%= prefecture.map %></td>
+        <td><%= link_to 'Show', prefecture %></td>
+        <td><%= link_to 'Edit', edit_prefecture_path(prefecture) %></td>
+        <td><%= link_to 'Destroy', prefecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prefecture', new_prefecture_path %>
+<br><br><%= link_to "Admin","/admin/index" %>

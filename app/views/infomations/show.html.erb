@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Info type:</strong>
+  <%= @infomation.info_type %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @infomation.value %>
+</p>
+
+<%= link_to 'Edit', edit_infomation_path(@infomation) %> |
+<%= link_to 'Back', infomations_path %>

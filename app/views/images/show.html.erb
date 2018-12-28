@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @image.hotel %>
+</p>
+
+<p>
+  <strong>Img type:</strong>
+  <%= @image.img_type %>
+</p>
+
+<p>
+  <strong>Img:</strong>
+  <%= @image.img %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @image.description %>
+</p>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

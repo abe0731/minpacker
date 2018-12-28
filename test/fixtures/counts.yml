@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotel: one
+  access: MyString
+  comment: MyString
+
+two:
+  hotel: two
+  access: MyString
+  comment: MyString

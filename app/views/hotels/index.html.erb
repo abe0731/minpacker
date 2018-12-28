@@ -1,0 +1,126 @@
+<!--
+<% if @message != "" then %>
+  <div class="row" style="margin:15px;">
+      <div class="col-md-12 notice_box">
+        <p class="message"><%= @message %></p>
+      </div>
+  </div>
+<% end %>
+-->
+<script>
+$(document).ready(function(){
+    var $setElm = $(".strcut");
+    var cutFigure = '150'; // カットする文字数
+    var afterTxt = ' …';  // 文字カット後に表示するテキスト
+    $setElm.each(function(){
+        var textLength = $(this).text().length;
+        var textTrim = $(this).text().substr(0,(cutFigure))
+        if(cutFigure < textLength) {
+            $(this).html(textTrim + afterTxt).css({visibility:'visible'});
+        } else if(cutFigure >= textLength) {
+            $(this).css({visibility:'visible'});
+        }
+    });
+});
+</script>
+
+<% @hotels.each_with_index do |hotel, i| %>
+
+  <div class="row" style="margin:15px;">
+      <div class="col-sm-8 col-md-9 result_box">
+          <div class="row">
+              <img src=<%= url_for(hotel.images[0]) %> class="col-xs-12 col-sm-6 col-md-5 col-lg-4 rounded image_outer" onerror="this.src='/assets/noimage.png'"></img>
+              <!--
+              <img class="col-xs-12 col-sm-6 col-md-5 col-lg-4 rounded" src="https://static.stayjapan.com/room/ed6/42c/3a1/173404_mini.jpg?1529615398">
+              -->
+              <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                    <h4><%= hotel.name1 %></h4>
+                    <p>
+                      <a href="/hotels?q%5Bprefecture_id_eq%5D=<%= hotel.prefecture_id %>">
+                        <span class="tag"><%= Prefecture.where(id: hotel.prefecture_id).first&.name1 %></span>
+                      </a>
+                      <% if !hotel.city_id.blank? %>
+                        <a href="/hotels?q%5Bcity_id_eq%5D=<%= hotel.city_id %>">
+                          <span class="tag"><%= City.where(id: hotel.city_id).first&.name1 %></span>
+                        </a>
+                      <% end %>
+                      <% if !hotel.station_id.blank? %>
+                        <a href="/hotels?q%5Bstation_id_eq%5D=<%= hotel.station_id %>">
+                          <span class="tag"><i class="fas fa-train"></i><%= Station.where(id: hotel.station_id).first&.name1 %></span>
+                        </a>
+                      <% end %>
+                      <% if !hotel.airport_id.blank? %>
+                        <a href="/hotels?q%5Bairport_id_eq%5D=<%= hotel.airport_id %>">
+                          <span class="tag"><i class="fas fa-plane"></i><%= Airport.where(id: hotel.airport_id).first&.name1 %></span>
+                        </a>
+                      <% end %>
+                    </p>
+                    <p>
+                      <i class="fas fa-map-marker-alt">　</i><%= hotel.address %>
+                    </p>
+                  </div>
+                  <div class="hidden-xs hidden-sm col-sm-3 col-lg-4">
+                    <h4><%= dsp_money(2, Price.where(hotel_id: hotel.id).first&.money) %></h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                    <p class="strcut"><%= hotel.about2 %><p>
+                  </div>
+                  <div class="hidden-xs hidden-sm col-sm-3 col-lg-4">
+                    <button type='button' class='btn btn-primary' style="width: 90%;margin:2px" onclick="location.href='/hotels/<%= hotel.id %>'">
+                      詳細を表示する
+                    </button>
+  <!--                   <button type='button' class='btn btn-warning' style="width: 90%;margin:2px" data-target="#CommentModal" data-toggle="modal">
+                      評価する
+                    </button>
+   -->                </div>
+                </div>
+                <div class="row" style="text-align: center">
+                  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+                    <h4><%= dsp_money(2, Price.where(hotel_id: hotel.id).first&.money) %></h4>
+                    <button type='button' class='btn btn-primary' style="width: 90%;margin:2px" onclick="location.href='/hotels/<%= hotel.id %>'">
+                      詳細を表示する
+                    </button>
+  <!--                   <button type='button' class='btn btn-warning' style="width: 90%;margin:2px" data-target="#CommentModal" data-toggle="modal">
+                      評価する
+                    </button> -->
+                  </div>
+                  <div class="hidden-xs hidden-sm col-sm-3 col-lg-4">
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-4 col-md-3 ad_sticky">
+        <% if i == 0 or i == 1 %>
+          <%= render "layouts/ad_google" %>
+        <% end %>
+      </div>
+  </div>
+
+  <%= render "layouts/modal_comment", hotel: hotel %>
+
+  <!-- 最後の1行 -->
+  <% if i == @hotels.length - 1 and @hotels.length == 10 %>
+    <!-- 同じ検索条件 かつ、更新日時の後 -->
+    <div>
+      <%= search_form_for @q, url:hotels_path do |f| %>
+        <input type="hidden" name="q[<%= @key %>]" id="q_<%= @key %>" value=<%= @value %>>
+        <input type="hidden" name="q[updated_at_lt]" id="q_updated_at_lt" value=<%= hotel.updated_at.strftime('%Y%m%d%H%M%S') %>>
+        <div class="row" style="margin:20px">
+            <%= f.submit ("もっと見る") , :class=>"btn btn-defalt col-xs-12 col-sm-12 col-md-9"%>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>
+
+
+<div class="row">
+    <h2>最近更新された民泊施設</h2>
+    <%= latest %>
+</div>

@@ -1,0 +1,2 @@
+module StayUnitsHelper
+end

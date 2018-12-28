@@ -1,0 +1,19 @@
+<%= render "layouts/prefictures" %>
+<%= render "layouts/tokyo23" %>
+<div class="row">
+    <div class="col-sm-9 col-md-9">
+        <div class="row">
+            <h2>最近更新された民泊施設</h2>
+            <%= latest %>
+        </div>
+        <div class="row">
+             <%= focus %>
+        </div>
+        <div class="row">
+            <%= popular %>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 ad_sticky">
+        <%= render "layouts/ad_google" %>
+    </div>
+</div>

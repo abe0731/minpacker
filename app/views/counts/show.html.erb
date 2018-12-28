@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @count.hotel %>
+</p>
+
+<p>
+  <strong>Access:</strong>
+  <%= @count.access %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @count.comment %>
+</p>
+
+<%= link_to 'Edit', edit_count_path(@count) %> |
+<%= link_to 'Back', counts_path %>

@@ -1,0 +1,77 @@
+<script>
+    $(document).ready(function () {
+        $(".select2").select2()
+        $(".select2-selection__rendered").css({"font-size":"120%"});
+        $(".select2").css({"width":"50%"})
+    })
+</script>
+<%= form_with(model: hotel, local: true) do |form| %>
+  <% if hotel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+
+      <ul>
+      <% hotel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <label for="name1">施設名</label>
+      <%= form.text_field :name1, class:"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label for="tel">施設の特徴(20文字程度)</label>
+      <%= form.text_area :about1, class:"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label for="prefecture_id">都道府県</label>
+      <br>
+      <%= form.collection_select(:prefecture_id, Prefecture.all, :id, :name1, {}, {id:'_prefecture', class: 'select2'}) %>
+    </div>
+    <div class="col-md-6">
+      <label for="city_id">市町村</label>
+      <br>
+      <%= form.collection_select(:city_id, City.all, :id, :name1, {}, {id:'_city', class: 'select2'}) %>
+    </div>
+    <!--
+    <div class="col-md-6">
+      <label for="station_id">最寄り駅</label>
+      <%= form.text_field :station_id, class:"form-control" %>
+    </div>
+    -->
+    <div class="col-md-6">
+      <label for="airport_id">空港</label>
+      <br>
+      <%= form.collection_select(:airport_id, Airport.all, :id, :name1, {}, {id:'_airport', class: 'select2'}) %>
+    </div>
+    <div class="col-md-6">
+      <label for="address">住所</label>
+      <%= form.text_field :address, class:"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label for="tel">電話番号</label>
+      <%= form.text_field :tel, class:"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label for="tel">メールアドレス</label>
+      <%= form.text_field :mail, class:"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label for="tel">URL</label>
+      <%= form.text_field :url, class:"form-control" %>
+    </div>
+    <div class="col-md-12">
+      <label for="about2">PR</label>
+      <%= form.text_area :about2, class:"form-control", style:"height:200px" %>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center;margin:20px">
+      <%= form.submit :class=>"btn btn-primary", :style=>"width:70%"%>
+  </div>
+<% end %>

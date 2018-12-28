@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @price.hotel %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @price.title %>
+</p>
+
+<p>
+  <strong>Quantity rent:</strong>
+  <%= @price.quantity_rent %>
+</p>
+
+<p>
+  <strong>Rent unit:</strong>
+  <%= @price.rent_unit %>
+</p>
+
+<p>
+  <strong>Quantity stay:</strong>
+  <%= @price.quantity_stay %>
+</p>
+
+<p>
+  <strong>Stay unit:</strong>
+  <%= @price.stay_unit %>
+</p>
+
+<p>
+  <strong>Money:</strong>
+  <%= @price.money %>
+</p>
+
+<%= link_to 'Edit', edit_price_path(@price) %> |
+<%= link_to 'Back', prices_path %>

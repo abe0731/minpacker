@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name1: MyString
+  name2: MyString
+  name3: MyString
+  prefecture: one
+  city: one
+  train_route1: MyString
+  train_route2: MyString
+  map: MyString
+
+two:
+  name1: MyString
+  name2: MyString
+  name3: MyString
+  prefecture: two
+  city: two
+  train_route1: MyString
+  train_route2: MyString
+  map: MyString

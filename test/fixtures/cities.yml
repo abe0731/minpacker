@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name1: MyString
+  name2: MyString
+  name3: MyString
+  prefecture: one
+  map: MyString
+
+two:
+  name1: MyString
+  name2: MyString
+  name3: MyString
+  prefecture: two
+  map: MyString

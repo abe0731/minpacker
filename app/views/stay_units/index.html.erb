@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stay Units</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stay_units.each do |stay_unit| %>
+      <tr>
+        <td><%= stay_unit.name %></td>
+        <td><%= link_to 'Show', stay_unit %></td>
+        <td><%= link_to 'Edit', edit_stay_unit_path(stay_unit) %></td>
+        <td><%= link_to 'Destroy', stay_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stay Unit', new_stay_unit_path %>
+<br><br><%= link_to "Admin","/admin/index" %>

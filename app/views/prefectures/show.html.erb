@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name1:</strong>
+  <%= @prefecture.name1 %>
+</p>
+
+<p>
+  <strong>Name2:</strong>
+  <%= @prefecture.name2 %>
+</p>
+
+<p>
+  <strong>Name3:</strong>
+  <%= @prefecture.name3 %>
+</p>
+
+<p>
+  <strong>Map:</strong>
+  <%= @prefecture.map %>
+</p>
+
+<%= link_to 'Edit', edit_prefecture_path(@prefecture) %> |
+<%= link_to 'Back', prefectures_path %>

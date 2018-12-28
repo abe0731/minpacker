@@ -1,0 +1,2 @@
+module RentUnitsHelper
+end

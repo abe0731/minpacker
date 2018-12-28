@@ -1,0 +1,92 @@
+<script>
+  $(document).ready(function () {
+    document.getElementById('hotel_images').onchange = function(event){
+      initializeFiles();
+        var files = event.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+          var reader = new FileReader;
+          reader.readAsDataURL(f);
+          reader.onload = (function(theFile) {
+            return function (e) {
+              var div = document.createElement('div');
+              div.className = 'reader_file';
+              div.innerHTML += '<img class="reader_image" src="' + e.target.result + '" />';
+              document.getElementById('list').insertBefore(div, null);
+            }
+          })(f);
+        }
+    };
+    function initializeFiles() {
+      document.getElementById('list').innerHTML = '';
+    }
+
+    function dragover(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+      for (var i = 0, f; f = files[i]; i++) {
+        var reader = new FileReader;
+        reader.readAsDataURL(f);
+        reader.onload = (function(theFile) {
+          return function (e) {
+            var div = document.createElement('div');
+            div.className = 'reader_file';
+            div.innerHTML += '<img class="reader_image" src="' + e.target.result + '" />';
+            document.getElementById('list').insertBefore(div, null);
+          }
+        })(f);
+      }
+    }
+  })
+
+
+
+</script>
+<style>
+.reader_file {
+  float: left;
+  padding: 10px;
+  width: 30%;
+}
+.reader_image {
+  width: 90%;
+}
+.reader_title {
+}
+</style>
+
+<%= form_with(model: @hotel, local: true, :url => { :controller => :images, :action => :create } ) do |form| %>
+
+  <input type="hidden" name="image[hotel_id]" id="hotel_id" value="<%= flash[:hotel_id] %>">
+
+  <div class="row">
+    <div class="col-md-12 image_box">
+      <!-- Make sure to add multipart: true in form_tag. It generates enctype="multipart/form-data". -->
+      <%= form.file_field :images, multiple: true %>
+      <!--
+      <input multiple="multiple" type="file" name="hotel[images][]" id="hotel_images">
+       -->
+      <output id="list" class="center_inner">選択した画像が表示されます</output>
+    </div>
+    <!--
+    <div class="col-md-6 drag_box" ondragover="dragover(event)" ondrop="drop(event)">
+      <p class="center_inner">
+        ここに画像をドロップして下さい
+      </p>
+    </div>
+    -->
+  </div>
+
+  <div class="row" style="text-align: center;margin:20px">
+    <div class="col-xs-6 col-md-6">
+      <%= form.submit :class=>"btn btn-primary", :style=>"width:80%"%>
+    </div>
+    <div class="col-xs-6 col-md-6">
+      <input type="submit" name="skip" value="後で行う" class="btn btn-default" style="width:80%">
+    </div>
+  </div>
+<% end %>
+

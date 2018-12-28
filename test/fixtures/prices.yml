@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotel: one
+  title: MyText
+  quantity_rent: 1
+  rent_unit: one
+  quantity_stay: 1
+  stay_unit: one
+  money: 1
+
+two:
+  hotel: two
+  title: MyText
+  quantity_rent: 1
+  rent_unit: two
+  quantity_stay: 1
+  stay_unit: two
+  money: 1

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotel: one
+  img_type: MyString
+  img: MyString
+  description: MyText
+
+two:
+  hotel: two
+  img_type: MyString
+  img: MyString
+  description: MyText

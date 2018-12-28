@@ -1,0 +1,2 @@
+class StayUnit < ApplicationRecord
+end

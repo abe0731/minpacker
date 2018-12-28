@@ -1,0 +1,24 @@
+<script>
+    $(document).ready(function () {
+        $(".select2").select2()
+        $(".select2-selection__rendered").css({"font-size":"120%"});
+        $(".select2").css({"width":"50%"})
+    })
+</script>
+
+<%= search_form_for(@q, url:hotels_path) do |f| %>
+    <div style="background-color: #F8F8F8;">
+        <div class="row" style="text-align: center;margin:10px">
+            <h2>民泊施設</h2>
+            <div class="col-md-12">
+                <%= f.collection_select(:id_eq, Hotel.all, :id, :name1, {}, {id:'_hotel', class: 'select2'}) %>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;margin:10px">
+            <div class="col-md-12">
+                <input class="btn btn-primary" style="width:50%;font-size:20px;margin:10px" type="submit" name="commit" value="検索" data-disable-with="検索">
+            </div>
+        </div>
+    </div>
+<% end %>
+
