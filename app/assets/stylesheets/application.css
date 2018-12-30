@@ -259,6 +259,13 @@ a:hover .image_outer::before{
   background-color:#f4f6f6;
   border-radius: 5px;
 }
+.mini_tag {
+  font-size:80%;
+  border:1px #BBBBBB solid;
+  padding:3px;
+  background-color:#f4f6f6;
+  border-radius: 2px;
+}
 
 .notice_box {
   border: 1px #BBBBBB solid;
@@ -290,6 +297,13 @@ a:hover .image_outer::before{
     height: 100%;
     text-indent:-999px;
 }
+.hotel_box_footer {
+  border: 1px #BBBBBB solid;
+  border-radius: 3px;
+  padding:0px;
+  position: relative;
+}
+
 .image_box {
   border: 1px #BBBBBB solid;
   border-radius: 10px;

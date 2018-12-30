@@ -9,7 +9,7 @@
           reader.onload = (function(theFile) {
             return function (e) {
               var div = document.createElement('div');
-              div.className = 'reader_file';
+              div.className = 'col-sm-6 col-md-4';
               div.innerHTML += '<img class="reader_image" src="' + e.target.result + '" />';
               document.getElementById('list').insertBefore(div, null);
             }
@@ -65,7 +65,7 @@
   <div class="row">
     <div class="col-md-12 image_box">
       <!-- Make sure to add multipart: true in form_tag. It generates enctype="multipart/form-data". -->
-      <%= form.file_field :images, multiple: true %>
+      <%= form.file_field :images, multiple: true, :id=>"hotel_images" %>
       <!--
       <input multiple="multiple" type="file" name="hotel[images][]" id="hotel_images">
        -->

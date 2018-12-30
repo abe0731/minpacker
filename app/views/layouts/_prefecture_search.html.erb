@@ -3,6 +3,8 @@
         $(".select2").select2()
         $(".select2-selection__rendered").css({"font-size":"120%"});
         $(".select2").css({"width":"50%"})
+
+        $('.modal').modal('show');
     })
 </script>
 
@@ -21,3 +23,21 @@
         </div>
     </div>
 <% end %>
+
+<div class="modal fade" id="CommentModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= render "layouts/ad_google" %>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>
+

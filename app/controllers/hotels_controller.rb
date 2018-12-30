@@ -1,5 +1,14 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  # KEY認証
+  before_action only:[:edit, :destroy] do |controller|
+    hotel_id  = params[:hotel_id]
+    hotel_key = params[:hotel_key]
+    @hotel = Hotel.where(id: hotel_id, key: hotel_key).take
+    if @hotel.blank?
+      redirect_to '/404'
+    end
+  end
 
   # GET /hotels
   # GET /hotels.json
@@ -95,8 +104,7 @@ class HotelsController < ApplicationController
 
     respond_to do |format|
       if @hotel.save
-        format.html { redirect_to new_price_path, notice: 'Hotel was successfully created.',flash: {hotel_id: @hotel.id, hotel_key: @hotel.key} }
-        format.json { render :new, status: :created, location: @hotel }
+        format.html { redirect_to new_price_path + "?hotel_id=" + @hotel.id.to_s + "&hotel_key=" + @hotel.key.to_s}
         # format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
         # format.json { render :show, status: :created, location: @hotel }
       else
@@ -111,8 +119,7 @@ class HotelsController < ApplicationController
   def update
     respond_to do |format|
       if @hotel.update(hotel_params)
-        format.html { redirect_to new_price_path, notice: 'Hotel was successfully updated.',flash: {hotel_id: @hotel.id, hotel_key: @hotel.key} }
-        format.json { render :new, status: :created, location: @hotel }
+        format.html { redirect_to new_price_path + "?hotel_id=" + @hotel.id.to_s + "&hotel_key=" + @hotel.key.to_s}
         # format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
         # format.json { render :show, status: :ok, location: @hotel }
       else

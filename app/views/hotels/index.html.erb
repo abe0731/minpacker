@@ -38,9 +38,11 @@ $(document).ready(function(){
                   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
                     <h4><%= hotel.name1 %></h4>
                     <p>
-                      <a href="/hotels?q%5Bprefecture_id_eq%5D=<%= hotel.prefecture_id %>">
-                        <span class="tag"><%= Prefecture.where(id: hotel.prefecture_id).first&.name1 %></span>
-                      </a>
+                      <% if !hotel.prefecture_id.blank? %>
+                        <a href="/hotels?q%5Bprefecture_id_eq%5D=<%= hotel.prefecture_id %>">
+                          <span class="tag"><%= Prefecture.where(id: hotel.prefecture_id).first&.name1 %></span>
+                        </a>
+                      <% end %>
                       <% if !hotel.city_id.blank? %>
                         <a href="/hotels?q%5Bcity_id_eq%5D=<%= hotel.city_id %>">
                           <span class="tag"><%= City.where(id: hotel.city_id).first&.name1 %></span>

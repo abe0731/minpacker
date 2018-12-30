@@ -3,10 +3,17 @@
         <img src=<%= url_for(hotel.images[0]) %> class="image_outer" onerror="this.src='/assets/noimage.png'"></img>
         <a href="/hotels/<%= hotel.id %>"></a>
     </div>
-    <div class="hotel_box" style="height:80px">
+    <div class="hotel_box_footer" style="height:80px">
         <div class="pull-left" style="padding:5px">
             <strong><%= hotel.name1 %></strong>
         </div>
+        <% if !hotel.prefecture_id.blank? %>
+          <div class="pull-left" style="padding:5px">
+            <a href="/hotels?q%5Bprefecture_id_eq%5D=<%= hotel.prefecture_id %>">
+              <span class="mini_tag"><%= Prefecture.where(id: hotel.prefecture_id).first&.name1 %></span>
+            </a>
+          </div>
+        <% end %>
         <div class="pull-right" style="padding:5px">
             <span class="money"><%= dsp_money(1, hotel.money) %></span>
         </div>

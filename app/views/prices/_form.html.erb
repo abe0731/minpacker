@@ -1,8 +1,52 @@
 <script>
     $(document).ready(function () {
+
+        function getParam(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
         $(".select2").select2()
+
+        // パラメータの取得
+        $("#hotel_id").val(getParam('hotel_id'))
+        $("#hotel_key").val(getParam('hotel_key'))
+
     })
 </script>
+      <div class="row detail_box">
+          <div class="col-md-2">
+            <h5>料金プラン</h5>
+          </div>
+          <div class="col-md-10">
+            <% @prices.each do |price| %>
+              <div class="row detail_box">
+                <div class="col-md-6">
+                 <%= price.title %>
+                </div>
+                <div class="col-md-4">
+                  <p class="pull-right">
+                     <%= price.quantity_rent %><%= price.rent_unit_name %>
+                    /<%= price.quantity_stay %><%= price.stay_unit_name %>
+                   <span class="money"><%= dsp_money(1, price.money) %></span>
+                 </p>
+                </div>
+                <div class="col-md-2">
+                  <p>
+                   <%= link_to '削除する', price, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+                 </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+
+
 <%= form_with(model: price, local: true) do |form| %>
   <% if price.errors.any? %>
     <div id="error_explanation">
@@ -20,7 +64,8 @@
     <p id="notice"><%= notice %></p>
   </div>
   -->
-  <input type="hidden" name="price[hotel_id]" id="hotel_id" value="<%= flash[:hotel_id] %>">
+  <input type="hidden" name="price[hotel_id]" id="hotel_id">
+  <input type="hidden" name="price[hotel_key]" id="hotel_key">
 
   <div class="row">
     <div class="col-md-6">
