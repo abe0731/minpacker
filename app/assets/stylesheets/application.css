@@ -406,7 +406,7 @@ a:hover .image_outer::before{
   position: relative;
   padding: 20px;
   border-radius: 10px;
-  background-color: #fff5084d;
+  background-color: #fefcdb;
   margin-right: 80px;          /* 右に余白を設ける */
 }
 /* 画像 - 絶対配置で右上に配置 */
@@ -424,7 +424,7 @@ a:hover .image_outer::before{
   height: 0;
   right: -15px;
   top: 20px;
-  border-left: 15px solid #fff5084d;
+  border-left: 15px solid #fefcdb;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
 }

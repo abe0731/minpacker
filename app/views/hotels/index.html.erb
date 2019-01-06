@@ -1,12 +1,4 @@
-<!--
-<% if @message != "" then %>
-  <div class="row" style="margin:15px;">
-      <div class="col-md-12 notice_box">
-        <p class="message"><%= @message %></p>
-      </div>
-  </div>
-<% end %>
--->
+<% content_for(:html_title) { '検索結果' } %>
 <script>
 $(document).ready(function(){
     var $setElm = $(".strcut");
